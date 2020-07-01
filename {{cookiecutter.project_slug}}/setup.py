@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
-with open( 'README.md', 'r' ) as fh:
-    long_description = fh.read()
+with open( './docs/{{ cookiecutter.project_slug }}.md', 'r' ) as f:
+    long_description = f.read()
 
 setup(
     name = '{{ cookiecutter.project_slug }}',
