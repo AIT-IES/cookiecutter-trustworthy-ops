@@ -58,7 +58,7 @@ In the following, the steps of the intended development / deployment process are
 
 ### Workflow definition and configuration
 
-The workflow is specified in the [Snakefile](https://snakemake.readthedocs.io/en/stable/snakefiles/writing_snakefiles.html), which can be found subfolder [`workflow`](./../workflow).
+The workflow is specified in the [Snakefile](https://snakemake.readthedocs.io/en/stable/snakefiles/writing_snakefiles.html), which can be found in subfolder [`workflow`](./../workflow).
 All steps of the workflow are defined as individual [Snakemake rules](https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html).
 Each rule executes a Python script (scripts are located in subfolder [`workflow/scripts`](./../workflow/scripts)) in its own conda environment (environment definition files are located in [`workflow/envs`](./../workflow/envs)).
 
