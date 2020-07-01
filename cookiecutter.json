@@ -1,0 +1,6 @@
+{
+    "project_name": "Trustworthy Ops",
+    "project_slug": "{{ cookiecutter.project_name | slugify( separator = '_' ) }}",
+	"workflow_steps": "step1, step2, ...",
+	"credentials": "user@gmail.com, https://github.com, ..."
+}

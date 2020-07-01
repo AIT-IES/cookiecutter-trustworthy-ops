@@ -1,0 +1,21 @@
+{
+{% for item in cookiecutter.workflow_steps.replace(' ','').split(',') | reject('eq','...') %}
+	"{{ item }}" : {},
+{% endfor %}
+{%- for item in cookiecutter.workflow_steps.replace(' ','').split(',') | reject('eq','...') %}
+	{%- if loop.last %}
+	"target": "data/{{ item }}/{run_id}_{{ item }}.out",
+	{%- endif %}
+{%- endfor %}
+
+	"run_id_format": "{:%Y-%m-%d-%H-%M-%S}",
+
+	"num_cores": 4,
+
+	"credentials": [
+{%- for item in cookiecutter.credentials.replace(' ','').split(',') | reject('eq','...') %}
+		"{{ item }}"
+	{%- if loop.nextitem is defined %},{%- endif %}
+{%- endfor %}
+	]
+}
