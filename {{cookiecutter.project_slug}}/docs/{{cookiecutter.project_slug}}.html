@@ -313,11 +313,21 @@ When using this option, please <strong>make absolutely sure that the permissions
 </p>
 
 <p>
-For instance, on Linux this should look similar to the following:
+On Linux, this should look similar to the following:
 </p>
 <pre><code class="bash language-bash">echo MY_SUPER_SECURE_PASSPHRASE &gt; .passphrase
 chmod 600 .passphrase
 export {{ cookiecutter.project_slug | upper }}_PWD_FILE=/path/to/.passphrase
+</code></pre>
+
+<p>
+On Windows, this should look similar to the following:
+</p>
+<pre><code class="bash language-bash">echo MY_SUPER_SECURE_PASSPHRASE &gt; .passphrase
+ECHO MY_SUPER_SECURE_PASSPHRASE > .passphrase
+ICACLS .passphrase /INHERITANCE:R
+ICACLS .passphrase /GRANT MyUserName:(F)
+SET {{ cookiecutter.project_slug | upper }}_PWD_FILE=C:\path\to\.passphrase
 </code></pre>
 
 <h2 id="platform-specific-comments">Platform-specific comments</h2>

@@ -222,12 +222,19 @@ Entering a passphrase for running the workflow is not a feasible option when aut
 For such a case, an environment variable called `{{ cookiecutter.project_slug | upper }}_PWD_FILE` can defined, pointing to a file to which the passphrase has been stored.
 When using this option, please **make absolutely sure that the permissions for the passphrase file are set appropriately**, i.e., read access only for the current user!
 
-For instance, on Linux this should look similar to the following:
+On Linux, this should look similar to the following:
 ```bash
 echo MY_SUPER_SECURE_PASSPHRASE > .passphrase
 chmod 600 .passphrase
-export {{ cookiecutter.project_slug | upper }}_PWD_FILE=/path/to/.passphrase
+export CE4T_OPT_OPS_PWD_FILE=/path/to/.passphrase
 ```
+
+On Windows, this should look similar to the following:
+```batch
+ECHO MY_SUPER_SECURE_PASSPHRASE > .passphrase
+ICACLS .passphrase /INHERITANCE:R
+ICACLS .passphrase /GRANT MyUserName:(F)
+SET CE4T_OPT_OPS_PWD_FILE=C:\path\to\.passphrase
 
 
 ## Platform-specific comments

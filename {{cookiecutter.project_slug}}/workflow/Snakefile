@@ -1,3 +1,6 @@
+# Specify file paths via function 'ospath' for cross-platform compatibility (Linux/Windows)
+from os.path import join as ospath
+
 # The following lines make the credentials cache available.
 from {{ cookiecutter.project_slug }}.utils.credentials_cache import CredentialsCache
 credentials_cache = CredentialsCache()
@@ -6,20 +9,20 @@ rule all:
     input:
 {%- for item in cookiecutter.workflow_steps.replace(' ','').split(',') | reject('eq','...') %}
     {%- if loop.last %}
-        'data/{{ item }}/{run_id}_{{ item }}.out'
+        ospath( 'data', '{{ item }}', '{run_id}_{{ item }}.out' )
     {%- endif %}
 {%- endfor %}
 
 {% for item in cookiecutter.workflow_steps.replace(' ','').split(',') | reject('eq','...') %}
 rule {{ item }}:
     output: 
-        'data/{{ item }}/{run_id}_{{ item }}.out'
+        ospath( 'data', '{{ item }}', '{run_id}_{{ item }}.out' )
     {%- if loop.previtem is defined %}
     input: 
-        'data/{{ loop.previtem }}/{run_id}_{{ loop.previtem }}.out'
+        ospath( 'data', '{{ loop.previtem }}', '{run_id}_{{ loop.previtem }}.out' )
     {%- endif %}
     conda: 
-        'envs/{{ item }}.yml'
+        ospath( 'envs', '{{ item }}.yml' )
     script: 
-        'scripts/{{ item }}.py'
+        ospath( 'scripts', '{{ item }}.py' )
 {% endfor %}
