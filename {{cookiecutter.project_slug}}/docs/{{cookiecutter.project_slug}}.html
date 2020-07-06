@@ -317,17 +317,15 @@ On Linux, this should look similar to the following:
 </p>
 <pre><code class="bash language-bash">echo MY_SUPER_SECURE_PASSPHRASE &gt; .passphrase
 chmod 600 .passphrase
-export {{ cookiecutter.project_slug | upper }}_PWD_FILE=/path/to/.passphrase
+export {{ cookiecutter.project_slug | upper }}_PWD_FILE=$PWD/.passphrase
 </code></pre>
 
 <p>
 On Windows, this should look similar to the following:
 </p>
-<pre><code class="bash language-bash">echo MY_SUPER_SECURE_PASSPHRASE &gt; .passphrase
-ECHO MY_SUPER_SECURE_PASSPHRASE > .passphrase
-ICACLS .passphrase /INHERITANCE:R
-ICACLS .passphrase /GRANT MyUserName:(F)
-SET {{ cookiecutter.project_slug | upper }}_PWD_FILE=C:\path\to\.passphrase
+<pre><code class="bash language-bash">ECHO MY_SUPER_SECURE_PASSPHRASE &gt; .passphrase
+ICACLS .passphrase /INHERITANCE:R /GRANT %USERNAME%:(F)
+SET CE4T_OPT_OPS_PWD_FILE=%CD%\.passphrase
 </code></pre>
 
 <h2 id="platform-specific-comments">Platform-specific comments</h2>
